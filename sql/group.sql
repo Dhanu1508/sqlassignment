@@ -1,0 +1,7 @@
+select description , sum(qty_ordered)from product_master p,sales_order_details sod where p.product_no=sod.product_no group by p.description/
+  select p.product_no,Description,sum(Qty_ordered*Product_rate)from product_master p,sales_order_details sod where p.product_no=sod.product_no group by description,p.product_no/
+  select client_no , avg(qty_ordered),client_no from sales_order s ,sales_order_details s1 where s.s_order_no=s1.s_order_no and qty_ordered*product_rate>15000 group by client_no/
+  select s.s_order_no,s.s_order_date,sum(so.qty_ordered*so.product_rate)"Order Billed",sum(so.qty_disp*so.product_rate) "Total Amount" from sales_orders, sales_order_details so where so.s_order_no=s.s_order_no and s.billed_yn='Y' and to_char(s_order_date,'mon')='jan' group by s.s_order_no,s.s_order_date/
+  select p.description||' Worth Rs'||sum(d.qty_disp*d.product_rate) from product_master p, sales_order_details d
+where p.product_no=d.product_no group by p.description/
+  select p.description||' Worth Rs'||sum(d.qty_disp*d.product_rate)||' was ordered in the month of'||to_char(s_order_date,'month')"Description Total amount Month" from product_master p, sales_order_details d,sales_orders where p.product_no=d.product_no and s.s_order_no=d.s_order_no group by p.description,s.s_order_date/
